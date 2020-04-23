@@ -1,0 +1,57 @@
+<label id="label"></label> <br/>
+
+<button (click)="onClick($event)">Tabela</button> 
+<button (click)="onClick2($event)">Kafle</button><br/>
+
+<table *ngIf="var1">
+    <tr>
+        <td>Obraz</td>
+        <td>Nazwa</td>
+        <td>Opis</td>
+        
+    </tr>
+    <tr *ngFor="let item of potwory;let i = index" (click)="onZmiana($event,i)" >
+        <td> <img src = {{img(i)}} alt="image" width="100px" height="100px"></td>
+      <td>{{ nazwa(i)}}</td>
+      <td>{{ info(i) }}</td>
+      
+    </tr >
+  </table>
+
+  <div *ngIf="var2">
+    <div id="kafelek1" (click)="onZmiana2($event,'kafelek1')">
+      <img src = {{img(0)}} alt="image" width="250px" height="250px">    
+      <div id="info">
+      Nazwa: {{nazwa(0)}} <br/>
+      Opis: {{info(0)}} <br/><br/>
+      </div>
+    </div>
+    <div id="kafelek2" (click)="onZmiana2($event,'kafelek2')">
+      <img src = {{img(1)}} alt="image" width="250px" height="250px">
+      <div id="info">
+      Nazwa: {{nazwa(1)}} <br/>
+      Opis: {{info(1)}} <br/><br/>
+      </div>
+    </div>
+    <div id="kafelek3" (click)="onZmiana2($event,'kafelek3')">
+      <img src = {{img(2)}} alt="image" width="250px" height="250px">
+      <div id="info">
+      Nazwa: {{nazwa(2)}} <br/>
+      Opis: {{info(2)}} <br/><br/>
+      </div>
+    </div>
+    <div id="kafelek4" (click)="onZmiana2($event,'kafelek4')">
+      <img src = {{img(3)}} alt="image" width="250px" height="250px">
+      <div id="info">
+      Nazwa: {{nazwa(3)}} <br/>
+      Opis: {{info(3)}} <br/><br/>
+      </div>
+    </div>
+    <div id="kafelek5" (click)="onZmiana2($event,'kafelek5')">
+        <img src = {{img(4)}} alt="image" width="250px" height="250px">
+        <div id="info">
+        Nazwa: {{nazwa(4)}} <br/>
+        Opis: {{info(4)}} <br/><br/>
+        </div>
+      </div>
+</div>
