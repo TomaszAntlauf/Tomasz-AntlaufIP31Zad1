@@ -1,0 +1,14 @@
+  
+<div>
+    <div style="display: inline-block; width: 50%;">
+        <img src={{potwory.img}} alt="img" width=100px;>
+    </div>
+    <div style="display: inline-block; width: 50%; ">
+        <div style="padding: 2px;">
+            <div>Nazwa: {{potwory.nazwa}}</div>
+            <div>Opis: {{potwory.opis}}</div>
+            <button [routerLink]="['/potwory', potwory.id]" mat-icon-button title="Details"><mat-icon>account_box</mat-icon></button>
+            <button mat-icon-button (click)='deletePotwory(potwory.id)' title="Delete"><mat-icon>delete</mat-icon></button>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 export interface IPotwory {
     id: number;
     nazwa: string;
-    info: string;
+    opis: string;
     img: string;
 }

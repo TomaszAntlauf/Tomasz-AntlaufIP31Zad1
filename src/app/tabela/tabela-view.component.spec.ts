@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PotworyComponent } from './app-comp2.component';
+import { TabelaViewComponent } from './tabela-view.component';
 
-describe('AppComp2Component', () => {
-  let component: PotworyComponent;
-  let fixture: ComponentFixture<PotworyComponent>;
+describe('TableViewComponent', () => {
+  let component: TabelaViewComponent;
+  let fixture: ComponentFixture<TabelaViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PotworyComponent ]
+      declarations: [ TabelaViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PotworyComponent);
+    fixture = TestBed.createComponent(TabelaViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,61 @@
+<mat-toolbar>
+    <button mat-icon-button routerLink="" title="Home">
+        <mat-icon>home</mat-icon>
+    </button>
+</mat-toolbar>
+<form class="example-form" [formGroup]="newForm" (ngSubmit)="onSubmit()">
+    <div class="profileView">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput autocomplete="off" placeholder="img" aria-label="img" [matAutocomplete]="auto"
+                        [formControl]="stateCtrl" id="img" formControlName="img">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let img of filteredStates | async" [value]="img.nazwa">
+                            <img class="example-option-img" aria-hidden [src]="img.nazwa" height="25">
+                            <span>{{img.nazwa}}</span>
+                        </mat-option>
+                    </mat-autocomplete>
+                    
+                </mat-form-field>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>ID</mat-label>
+                                <input matInput autocomplete="off" id="id" formControlName="id" required>
+                                <mat-error *ngIf="newForm.controls['id']">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Nazwa</mat-label>
+                                <input matInput autocomplete="off" id="nazwa" formControlName="nazwa" required>
+                                <mat-error *ngIf="newForm.controls['nazwa']">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Opis</mat-label>
+                                <input matInput autocomplete="off" id="opis" formControlName="opis">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button type="submit" [disabled]="!newForm.valid">Dodaj</button>
+                <button mat-button routerLink=''>Wróć</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</form>

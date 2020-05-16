@@ -1,0 +1,7 @@
+<div *ngIf="showKafleContent" class="tileViewGrid">
+    <mat-grid-list  cols="3" rowHeight="200px" style="height: calc(401px);">
+        <mat-grid-tile *ngFor="let potwor of potwory" >
+            <app-tile [potwory]="potwor" (loadPotworySignal)="loadPotworySignal()"></app-tile>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
