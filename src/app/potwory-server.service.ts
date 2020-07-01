@@ -8,6 +8,7 @@ import {IPotwory} from './ipotwory'
   })
   export class PotworyServerService {
     private url = "https://localhost:44372/";
+  paginator: any;
   
     constructor(private http: HttpClient) {
   

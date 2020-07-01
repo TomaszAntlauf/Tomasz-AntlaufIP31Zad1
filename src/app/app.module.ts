@@ -26,6 +26,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LoginComponent } from './login/login.component';
+import { JwtModule } from "@auth0/angular-jwt";
+import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { PotworyService } from './potwory.service';
+import { PotworyServerService } from './potwory-server.service';
+
+
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -36,7 +48,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     KafleComponent,
     PotworyComponent,
     SzczegolyComponent,
-    NowyComponent
+    NowyComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +70,18 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    MatSortModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:44372"],
+        blacklistedRoutes: []
+      }
+    })
   ],
-  providers: [],
+  providers: [PotworyServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

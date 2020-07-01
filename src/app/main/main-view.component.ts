@@ -1,6 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { PotworyServerService } from '../potwory-server.service';
 import {IPotwory}from '../ipotwory'
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-main-view',
@@ -15,7 +19,10 @@ export class MainViewComponent implements OnInit {
   loading: boolean;
   potwory: IPotwory[] = []; 
 
-  constructor(private potworyService: PotworyServerService) { }
+
+  constructor(private potworyService: PotworyServerService, 
+    private jwtHelper: JwtHelperService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.loadPotwory();
@@ -39,6 +46,32 @@ export class MainViewComponent implements OnInit {
                           this.loading = false;
                         },
                           error => console.log(error));
+  }
+
+  isUserAuthenticated() {
+    const token: string = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      this.router.navigate(["login"]);
+      return false;
+    }
+  }
+
+  isAdminAuthenticated() {
+    const uType: string = localStorage.getItem("uType");
+    if (uType == 'admin') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  public logOut = () => {
+    localStorage.removeItem("jwt");
+    this.router.navigate(["login"]);
   }
 
 }

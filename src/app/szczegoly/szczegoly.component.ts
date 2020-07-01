@@ -67,4 +67,14 @@ export class SzczegolyComponent implements OnInit {
     return 'Error';
   }
 
+  isAdminAuthenticated() {
+    const uType: string = localStorage.getItem("uType");
+    if (uType == 'admin') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 }

@@ -7,6 +7,7 @@
         <div style="padding: 2px;">
             <div>Nazwa: {{potwory.nazwa}}</div>
             <div>Opis: {{potwory.opis}}</div>
+            <div *ngIf="isAdminAuthenticated() == true"></div>
             <button [routerLink]="['/potwory', potwory.id]" mat-icon-button title="Details"><mat-icon>account_box</mat-icon></button>
             <button mat-icon-button (click)='deletePotwory(potwory.id)' title="Delete"><mat-icon>delete</mat-icon></button>
         </div>
