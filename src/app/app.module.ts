@@ -81,7 +81,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [PotworyServerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

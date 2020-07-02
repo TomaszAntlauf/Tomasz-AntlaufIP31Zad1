@@ -4,6 +4,7 @@ import { PotworyServerService } from '../potwory-server.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import { Csvexporter } from '../csv'
 
 
 @Component({
@@ -24,18 +25,21 @@ export class TabelaViewComponent implements OnInit {
   dataSource : MatTableDataSource<IPotwory>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  isLoaded = false
 
-  constructor(private potworyService: PotworyServerService) {
+  constructor(private potworyService: PotworyServerService, private exporter:Csvexporter) {
     this.potworyService.getPotwory().subscribe(data =>{  
-      this.dataSource = new MatTableDataSource(data);  
+      this.dataSource = new MatTableDataSource(data); 
       this.dataSource.paginator = this.paginator;  
-      this.dataSource.sort = this.sort;});
+      this.dataSource.sort = this.sort;
+      this.isLoaded = true 
+    });
 
   }
   
   ngOnInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
+    //this.dataSource.paginator = this.paginator;
     
   }
 
@@ -46,6 +50,7 @@ export class TabelaViewComponent implements OnInit {
       this.dataSource.paginator.firstPage();  
     }  
   }
+  
 
   deletePotwory(id: number): void {
     this.potworyService
@@ -53,6 +58,9 @@ export class TabelaViewComponent implements OnInit {
         .subscribe(()=> {
           this.loadPotwory.emit();
         });
+  }
+  downloadCSV(){
+    this.exporter.downloadCSV(this.potwory);
   }
 
 }

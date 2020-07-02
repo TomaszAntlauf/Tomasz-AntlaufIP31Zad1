@@ -24,6 +24,8 @@
     "@auth0/angular-jwt": "^4.2.0",
     "@ionic/storage": "^2.2.0",
     "angular-material": "^1.1.23",
+    "angular5-csv": "^0.2.11",
+    "angular7-csv": "^0.2.12",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -1,9 +1,10 @@
-<div *ngIf="showTabelaContent" class="mat-elevation-z8 tableView">
+<div *ngIf="isLoaded" >
+<button (click)="downloadCSV()" class="btn-default">Pobierz CSV</button>
 <h2>Filtr</h2>  
 <mat-form-field>  
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">  
 </mat-form-field>
-<table *ngIf="showTabelaContent" mat-table [dataSource]="dataSource" matSort>
+<table *ngIf="showTabelaContent" mat-table [dataSource]="potwory" matSort class="mat-elevation-z8 tableView">
     <!-- Avatar Column -->
     <ng-container matColumnDef="IMG">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> IMG </th>
@@ -40,6 +41,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  </div>
-  <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+ </div>
+ <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator> 
   
