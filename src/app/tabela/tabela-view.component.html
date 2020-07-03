@@ -4,7 +4,7 @@
 <mat-form-field>  
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">  
 </mat-form-field>
-<table *ngIf="showTabelaContent" mat-table [dataSource]="potwory" matSort class="mat-elevation-z8 tableView">
+<table *ngIf="showTabelaContent" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tableView">
     <!-- Avatar Column -->
     <ng-container matColumnDef="IMG">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> IMG </th>
