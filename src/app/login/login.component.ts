@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("jwt", token);
       localStorage.setItem("uType", uType);
       this.invalidLogin = false;
+     // localStorage.removeItem("sort");
+     // localStorage.removeItem("filtr");
       this.router.navigate(["/"]);
     }, err => {
       this.invalidLogin = true;

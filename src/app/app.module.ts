@@ -81,6 +81,7 @@ export function tokenGetter() {
       }
     })
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

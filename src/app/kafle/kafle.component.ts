@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IPotwory } from '../ipotwory';
 import { PotworyServerService } from '../potwory-server.service';
 
@@ -13,10 +13,16 @@ export class KafleComponent implements OnInit {
 
   @Output("loadPotworySignal") loadPotworySignal: EventEmitter<any> = new EventEmitter();
 
-  constructor(private potworyService: PotworyServerService) { }
 
-  ngOnInit(): void {console.log(this.potwory);
+  constructor(private potworyService: PotworyServerService) {
+    //formbilder
+    
   }
+   
+  ngOnInit(): void {
+    console.log(this.potwory);
+  }
+  
 
   deletePotwory(id: number): void {
     this.potworyService

@@ -1,3 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span>
+      <label for="sort">Sortuj:</label>
+      <select name="Sortowanie" id="sort" formControlName="sort">
+        <option value="nazasc">Nazwa rosnąco</option>
+        <option value="nazdesc">Nazwa malejąco</option>
+        <option value="opasc">Opis rosnąco</option>
+        <option value="opdesc">Opis malejąco</option>
+      </select>
+    </span>
+    <span>
+      <label for="filtr">Filtruj</label>
+      <select name="Filtrowanie" id="filtr" formControlName="filtr">
+        <option value="Bazyliszek">Bazyliszek</option>
+        <option value="Krabopająk">Krabopająk</option>
+        <option value="Leszy">Leszy</option>
+        <option value="Troll">Troll</option>
+        <option value="Widłogon">Widłogon</option>
+      </select>
+    </span>
+    <input type="submit" value="Wyświetl"/>
+  </form>
+  <br>
+  <button (click)="downloadCSV()" class="btn-default">Pobierz CSV</button>
+  <button (click)="reset()" class="btn-default">Reset</button>
 <div *ngIf="showKafleContent" class="tileViewGrid">
     <mat-grid-list  cols="3" rowHeight="200px" style="height: calc(401px);">
         <mat-grid-tile *ngFor="let potwor of potwory" >
@@ -5,3 +30,6 @@
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+
+
+

@@ -1,9 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { PotworyServerService } from '../potwory-server.service';
 import {IPotwory}from '../ipotwory'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-
+import { Csvexporter } from '../csv'
 
 
 @Component({
@@ -13,20 +13,29 @@ import { Router } from '@angular/router';
 })
 export class MainViewComponent implements OnInit {
 
-  showTableVar: boolean = true;
-  showTileVar: boolean = false;
+  public showTableVar: boolean = true;
+  public showTileVar: boolean = false;
   spanVar: string = 'Nie wybrano żadnego obiektu';
   loading: boolean;
   potwory: IPotwory[] = []; 
+  
 
 
   constructor(private potworyService: PotworyServerService, 
     private jwtHelper: JwtHelperService,
-    private router: Router) { }
+    private router: Router) { 
+      
+      
+    }
 
   ngOnInit(): void {
     this.loadPotwory();
   }
+
+  getinfo(str: string) {
+    document.getElementById("mess").textContent = str;
+  }
+
 
   showTable() {
     this.showTableVar = true;
@@ -62,6 +71,7 @@ export class MainViewComponent implements OnInit {
   isAdminAuthenticated() {
     const uType: string = localStorage.getItem("uType");
     if (uType == 'admin') {
+      
       return true;
     }
     else {
@@ -71,6 +81,8 @@ export class MainViewComponent implements OnInit {
 
   public logOut = () => {
     localStorage.removeItem("jwt");
+    //localStorage.removeItem("sort");
+    //localStorage.removeItem("filtr");
     this.router.navigate(["login"]);
   }
 

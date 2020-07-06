@@ -1,13 +1,33 @@
-<div *ngIf="isLoaded" >
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <span>
+    <label for="sort">Sortuj:</label>
+    <select name="Sortowanie" id="sort" formControlName="sort">
+      <option value="nazasc">Nazwa rosnąco</option>
+      <option value="nazdesc">Nazwa malejąco</option>
+      <option value="opasc">Opis rosnąco</option>
+      <option value="opdesc">Opis malejąco</option>
+    </select>
+  </span>
+  <span>
+    <label for="filtr">Filtruj</label>
+    <select name="Filtrowanie" id="filtr" formControlName="filtr">
+      <option value="Bazyliszek">Bazyliszek</option>
+      <option value="Krabopająk">Krabopająk</option>
+      <option value="Leszy">Leszy</option>
+      <option value="Troll">Troll</option>
+      <option value="Widłogon">Widłogon</option>
+    </select>
+  </span>
+  <input type="submit" value="Wyświetl"/>
+</form>
+<br>
 <button (click)="downloadCSV()" class="btn-default">Pobierz CSV</button>
-<h2>Filtr</h2>  
-<mat-form-field>  
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">  
-</mat-form-field>
-<table *ngIf="showTabelaContent" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tableView">
+<button (click)="reset()" class="btn-default">Reset</button>
+
+<table *ngIf="showTabelaContent" mat-table [dataSource]="potwory"  class="mat-elevation-z8 tableView">  
     <!-- Avatar Column -->
     <ng-container matColumnDef="IMG">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> IMG </th>
+      <th mat-header-cell *matHeaderCellDef> IMG </th>
       <td mat-cell *matCellDef="let element">  
         <img src={{element.img}} alt="IMG" width=30px;>
       </td>
@@ -15,13 +35,13 @@
   
     <!-- Name Column -->
     <ng-container matColumnDef="Nazwa">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa </th>
+      <th mat-header-cell *matHeaderCellDef> Nazwa </th>
       <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
     </ng-container>
   
     <!-- Surname Column -->
     <ng-container matColumnDef="Opis">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opis </th>
+      <th mat-header-cell *matHeaderCellDef> Opis </th>
       <td mat-cell *matCellDef="let element"> {{element.opis}} </td>
     </ng-container>
   
@@ -32,7 +52,7 @@
         <button [routerLink]="['/potwory', element.id]" mat-button title="Details">
           <mat-icon>account_box</mat-icon>
         </button>
-        <button mat-button title="Delete" (click)="deletePotwory(element.id)">
+        <button *ngIf="isAdminAuthenticated() == true" mat-button title="Delete" (click)="deletePotwory(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -41,6 +61,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
- </div>
- <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator> 
+ <!-- <mat-paginator [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = OnPageChange($event)">
+  </mat-paginator>-->
+  
+
+
+ 
   
